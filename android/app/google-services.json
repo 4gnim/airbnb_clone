@@ -12,7 +12,20 @@
           "package_name": "com.example.airbnb_clone"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "189319988365-7lfbk3tjl1fe5ovfkv7td4rokle0in1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.airbnb_clone",
+            "certificate_hash": "9ce1a3b7b814064f3ebfae41bc388788ea089b32"
+          }
+        },
+        {
+          "client_id": "189319988365-maf6se4qpu3sq1p2suve2t1l6p649t31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDyf-Xt4kh5RuzPxVQjDJ2NkVgBstMPoNw"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189319988365-maf6se4qpu3sq1p2suve2t1l6p649t31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
