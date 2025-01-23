@@ -1,3 +1,4 @@
+import 'package:airbnb_clone/controllers/favorite_notifier.dart';
 import 'package:airbnb_clone/views/place_detail_page.dart';
 import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,6 +20,7 @@ class _DisplayPlaceState extends State<DisplayPlace> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final provider = FavoriteNotifier.of(context);
     return StreamBuilder(
         stream: placeCollection.snapshots(),
         builder: (context, streamSnapshot) {
@@ -100,11 +102,15 @@ class _DisplayPlaceState extends State<DisplayPlace> {
                                         color: Colors.white,
                                       ),
                                       InkWell(
-                                        onTap: () {},
-                                        child: const Icon(
+                                        onTap: () {
+                                          provider.tooglefavorite(place);
+                                        },
+                                        child: Icon(
                                           Icons.favorite,
                                           size: 30,
-                                          color: Colors.black54,
+                                          color: provider.isExist(place)
+                                              ? Colors.red
+                                              : Colors.black54,
                                         ),
                                       )
                                     ],
