@@ -28,23 +28,29 @@ class _ExplorePageState extends State<ExplorePage> {
         bottom: false,
         child: Column(
           children: [
+            // for search bar and filter button
             const SearchBarAndFilter(),
+            // let's fetch list of category items from firebase.
             listOfCategoryItems(size),
             const Expanded(
-                child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  DisplayTotalPrice(),
-                  SizedBox(height: 15),
-                  DisplayPlace(),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // for switch button
+                    DisplayTotalPrice(),
+                    SizedBox(height: 15),
+                    // displat the place items
+                    DisplayPlace(),
+                  ],
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ),
+      // for google map
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: MapWithCustomInfoWindows(),
+      floatingActionButton: const MapWithCustomInfoWindows(),
     );
   }
 
@@ -66,64 +72,66 @@ class _ExplorePageState extends State<ExplorePage> {
               SizedBox(
                 height: size.height * 0.12,
                 child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: streamSnapshot.data!.docs.length,
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            top: 20,
-                            right: 20,
-                            left: 20,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 32,
-                                width: 40,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.network(
-                                  streamSnapshot.data!.docs[index]['image'],
-                                  color: selectedIndex == index
-                                      ? Colors.black
-                                      : Colors.black45,
-                                ),
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: streamSnapshot.data!.docs.length,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                          top: 20,
+                          right: 20,
+                          left: 20,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 32,
+                              width: 40,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
                               ),
-                              const SizedBox(height: 5),
-                              Text(
-                                streamSnapshot.data!.docs[index]['title'],
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    color: selectedIndex == index
-                                        ? Colors.black
-                                        : Colors.black45),
-                              ),
-                              const SizedBox(height: 10),
-                              Container(
-                                height: 3,
-                                width: 50,
+                              child: Image.network(
+                                streamSnapshot.data!.docs[index]['image'],
                                 color: selectedIndex == index
                                     ? Colors.black
-                                    : Colors.transparent,
+                                    : Colors.black45,
                               ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              streamSnapshot.data!.docs[index]['title'],
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: selectedIndex == index
+                                    ? Colors.black
+                                    : Colors.black45,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Container(
+                              height: 3,
+                              width: 50,
+                              color: selectedIndex == index
+                                  ? Colors.black
+                                  : Colors.transparent,
+                            )
+                          ],
                         ),
-                      );
-                    }),
-              )
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           );
         }

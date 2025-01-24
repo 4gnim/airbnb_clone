@@ -8,7 +8,9 @@ class SearchBarAndFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 27),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 27,
+      ),
       child: Row(
         children: [
           Expanded(
@@ -20,7 +22,7 @@ class SearchBarAndFilter extends StatelessWidget {
                   BoxShadow(
                     blurRadius: 7,
                     color: Colors.black38,
-                  ),
+                  )
                 ],
               ),
               child: const Padding(
@@ -47,13 +49,13 @@ class SearchBarAndFilter extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 20,
-                          width: 240,
+                          width: 220,
                           child: TextField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderSide: BorderSide.none,
                               ),
-                              hintText: "Anywhere . Any week . Add guests",
+                              hintText: "Anywhere . Any wek . Add guests",
                               hintStyle: TextStyle(
                                 color: Colors.black38,
                                 fontSize: 13,
@@ -62,7 +64,7 @@ class SearchBarAndFilter extends StatelessWidget {
                               fillColor: Colors.white,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],
@@ -83,7 +85,7 @@ class SearchBarAndFilter extends StatelessWidget {
               Icons.tune,
               size: 30,
             ),
-          )
+          ),
         ],
       ),
     );

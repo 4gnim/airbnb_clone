@@ -33,7 +33,7 @@ class _LocationInMapState extends State<LocationInMap> {
             widget.place['latitude'],
             widget.place['longitude'],
           ),
-          zoom: 14),
+          zoom: 11),
     );
   }
 }

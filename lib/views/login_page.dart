@@ -14,19 +14,17 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
-            child: SafeArea(
           bottom: false,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Center(
                 child: Text(
-                  'Log in or Sign up',
+                  "Log in or sign up",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -42,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Welcome to Airbnb',
+                      "Welcome to Airbnb",
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
@@ -51,8 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-
-                    // For Phone Number Field
+                    // for phone number field,
                     phoneNumberField(size),
                     const SizedBox(height: 10),
                     RichText(
@@ -97,10 +94,11 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       children: [
                         Expanded(
-                            child: Container(
-                          height: 1,
-                          color: Colors.black26,
-                        )),
+                          child: Container(
+                            height: 1,
+                            color: Colors.black26,
+                          ),
+                        ),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
@@ -109,10 +107,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Expanded(
-                            child: Container(
-                          height: 1,
-                          color: Colors.black26,
-                        )),
+                          child: Container(
+                            height: 1,
+                            color: Colors.black26,
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(height: size.height * 0.015),
@@ -123,13 +122,20 @@ class _LoginPageState extends State<LoginPage> {
                       Colors.blue,
                       30,
                     ),
+                    // now let's do the google authentication parts
+// add the sha1 and sha265 key
+// after you have enable google and  Email/Password sign in,
+// you need to re download the googlservice file in both the androi and ios device and replace the old file to new file ,
+                    // after this all android setup is completed but you need to add some line for iso
                     InkWell(
                       onTap: () async {
                         await FirebaseAuthServices().signInWithGoogle();
                         Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
                       },
                       child: socialIcons(
                         size,
@@ -149,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                     socialIcons(
                       size,
                       Icons.email_outlined,
-                      "Continue with Email",
+                      "Continue with email",
                       Colors.black,
                       30,
                     ),
@@ -165,10 +171,10 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 ),
-              )
+              ),
             ],
           ),
-        )),
+        ),
       ),
     );
   }
@@ -229,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Country/Region',
+                  "Country/Regin",
                   style: TextStyle(
                     color: Colors.black45,
                   ),
@@ -238,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Indonesia(+62)',
+                      "Nepal(+977)",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -249,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
                       size: 30,
                     ),
                   ],
-                ),
+                )
               ],
             ),
           ),
@@ -258,12 +264,13 @@ class _LoginPageState extends State<LoginPage> {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: TextField(
               decoration: InputDecoration(
-                  hintText: 'Phone Number',
-                  hintStyle: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black45,
-                  ),
-                  border: InputBorder.none),
+                hintText: "Phone number",
+                hintStyle: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black45,
+                ),
+                border: InputBorder.none,
+              ),
             ),
           ),
         ],

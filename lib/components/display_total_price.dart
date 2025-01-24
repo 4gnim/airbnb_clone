@@ -10,8 +10,7 @@ class DisplayTotalPrice extends StatefulWidget {
 }
 
 class _DisplayTotalPriceState extends State<DisplayTotalPrice> {
-  bool isSwitched = false;
-
+  bool isSwitch = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,28 +32,31 @@ class _DisplayTotalPriceState extends State<DisplayTotalPrice> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Display total price',
+                    "Display total price",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 17,
                     ),
                   ),
                   Text(
-                    'Included all fees, before texes',
+                    "Inclued all fees, before texes",
                     style: TextStyle(
                       color: Colors.black54,
                       fontSize: 16,
                     ),
-                  ),
+                  )
                 ],
               ),
               Switch(
-                  inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: Colors.grey,
-                  value: isSwitched,
-                  onChanged: (value) {
-                    isSwitched = value;
-                  }),
+                inactiveThumbColor: Colors.white,
+                inactiveTrackColor: Colors.grey,
+                value: isSwitch,
+                onChanged: (value) {
+                  setState(() {
+                    isSwitch = value;
+                  });
+                },
+              )
             ],
           ),
         ),

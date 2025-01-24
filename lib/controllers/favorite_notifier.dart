@@ -7,55 +7,64 @@ class FavoriteNotifier extends ChangeNotifier {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   List<String> get favorites => _favoriteIds;
 
-  FavoriteNotifier() {
+  FavoriteProvider() {
     loadFavorite();
   }
 
-  void tooglefavorite(DocumentSnapshot place) async {
+  // toggle favorites states
+  void toggleFavorite(DocumentSnapshot place) async {
     String placeId = place.id;
     if (_favoriteIds.contains(placeId)) {
       _favoriteIds.remove(placeId);
-      await _removeFavorite(placeId);
+      await _removeFavorite(placeId); // remove grom favorite
     } else {
       _favoriteIds.add(placeId);
-      await _addFavorites(placeId);
-    }
-  }
-
-  bool isExist(DocumentSnapshot place) {
-    return _favoriteIds.contains(place.id);
-  }
-
-  Future<void> _addFavorites(String placeId) async {
-    try {
-      await firebaseFirestore
-          .collection('userFavorites')
-          .doc(placeId)
-          .set({'isFavorite': true});
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
-  Future<void> _removeFavorite(String placeId) async {
-    try {
-      await firebaseFirestore.collection('userFavorites').doc(placeId).delete();
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
-  Future<void> loadFavorite() async {
-    try {
-      QuerySnapshot snapshot =
-          await firebaseFirestore.collection('userFavorites').get();
-      _favoriteIds = snapshot.docs.map((doc) => doc.id).toList();
-    } catch (e) {
-      debugPrint(e.toString());
+      await _addFavorites(placeId); // add to favorite
     }
     notifyListeners();
   }
 
+  // check if a place is afavorited
+  bool isExist(DocumentSnapshot place) {
+    return _favoriteIds.contains(place.id);
+  }
+
+  // add favorites items to firestore
+  Future<void> _addFavorites(String placeId) async {
+    try {
+      // create the userFavorite collection and add items as favorites in firestore
+      await firebaseFirestore
+          .collection("userFavorites")
+          .doc(placeId)
+          .set({'isFavorite': true});
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  // remove favorites items from friestore
+  Future<void> _removeFavorite(String placeId) async {
+    try {
+      // create the userFavorite collection and add items as favorites in firestore
+      await firebaseFirestore.collection("userFavorites").doc(placeId).delete();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  // load favorites itesm from firestore (if user make some items favorite then load this items)
+  Future<void> loadFavorite() async {
+    try {
+      QuerySnapshot snapshot =
+          await firebaseFirestore.collection("userFavorites").get();
+      _favoriteIds = snapshot.docs.map((doc) => doc.id).toList();
+    } catch (e) {
+      print(e.toString());
+    }
+    notifyListeners();
+  }
+
+  // Static method to access the provider from any context
   static FavoriteNotifier of(BuildContext context, {bool listen = true}) {
     return Provider.of<FavoriteNotifier>(
       context,

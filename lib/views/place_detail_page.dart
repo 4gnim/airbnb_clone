@@ -29,6 +29,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // detail image , back button, share and favorite button
             detailImageandIcon(size, context, provider),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
@@ -47,7 +48,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
                   ),
                   SizedBox(height: size.height * 0.02),
                   Text(
-                    'Room in ${widget.place['address']}',
+                    "Room in ${widget.place['address']}",
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -63,12 +64,14 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
                 ],
               ),
             ),
-            widget.place['isActive'] == true
+            widget.place["isActive"] == true
                 ? ratingAndStarTrue()
                 : ratingAndStarFalse(),
             SizedBox(height: size.height * 0.02),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -79,65 +82,65 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
                     "This is a rare find",
                     "${widget.place['vendor']}'s place is usually fully booked.",
                   ),
+                  const Divider(),
+                  placePropertyList(
+                    size,
+                    widget.place['vendorProfile'],
+                    "Stay with ${widget.place['vendor']}",
+                    "Superhost . ${widget.place['yearOfHostin']} years hosting",
+                  ),
+                  const Divider(),
+                  placePropertyList(
+                      size,
+                      "https://cdn-icons-png.flaticon.com/512/6192/6192020.png",
+                      "Room in a rental unit",
+                      "Your own room in a home, pluse access\nto shared spaces."),
+                  placePropertyList(
+                      size,
+                      "https://cdn0.iconfinder.com/data/icons/co-working/512/coworking-sharing-17-512.png",
+                      "Shared common spaces",
+                      "You'll share parts of the home with the host,"),
+                  placePropertyList(
+                      size,
+                      "https://img.pikbest.com/element_our/20230223/bg/102f90fb4dec6.png!w700wp",
+                      "Shared bathroom",
+                      "Your'll share the bathroom with others."),
+                  const Divider(),
+                  SizedBox(height: size.height * 0.02),
+                  const Text(
+                    "About this place",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                  ),
+                  const Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+                  const Divider(),
+                  const Text(
+                    "Where  you'll be",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    widget.place['address'],
+                    style: const TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 400,
+                    width: size.width,
+                    child: LocationInMap(
+                      place: widget.place,
+                    ),
+                  ),
+                  const SizedBox(height: 100),
                 ],
               ),
             ),
-            const Divider(),
-            placePropertyList(
-              size,
-              widget.place['vendorProfile'],
-              "Stay with ${widget.place['vendor']}",
-              "Superhost . ${widget.place['yearOfHostin']} years hosting",
-            ),
-            const Divider(),
-            placePropertyList(
-                size,
-                "https://cdn-icons-png.flaticon.com/512/6192/6192020.png",
-                "Room in a rental unit",
-                "Your own room in a home, pluse access\nto shared spaces."),
-            placePropertyList(
-                size,
-                "https://cdn0.iconfinder.com/data/icons/co-working/512/coworking-sharing-17-512.png",
-                "Shared common spaces",
-                "You'll share parts of the home with the host,"),
-            placePropertyList(
-                size,
-                "https://img.pikbest.com/element_our/20230223/bg/102f90fb4dec6.png!w700wp",
-                "Shared bathroom",
-                "Your'll share the bathroom with others."),
-            const Divider(),
-            SizedBox(height: size.height * 0.02),
-            const Text(
-              "About this place",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
-            ),
-            const Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-            const Divider(),
-            const Text(
-              "Where  you'll be",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              widget.place['address'],
-              style: const TextStyle(
-                fontSize: 18,
-              ),
-            ),
-            SizedBox(
-              height: 400,
-              width: size.width,
-              child: LocationInMap(
-                place: widget.place,
-              ),
-            ),
-            const SizedBox(height: 100),
           ],
         ),
       ),
@@ -160,7 +163,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
             children: [
               RichText(
                 text: TextSpan(
-                  text: "\$${widget.place['price']} ",
+                  text: "Rp. ${widget.place['price']} ",
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
@@ -168,7 +171,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
                   ),
                   children: const [
                     TextSpan(
-                      text: "night",
+                      text: "/night",
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
@@ -193,7 +196,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
           ),
           Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: 35,
+              horizontal: 30,
               vertical: 15,
             ),
             decoration: BoxDecoration(
@@ -255,33 +258,31 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
     );
   }
 
-  Padding ratingAndStarFalse() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Icon(Icons.star),
-          const SizedBox(width: 5),
-          Text(
-            "${widget.place['rating'].toString()} . ",
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
+  Padding ratingAndStarFalse() => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Icon(Icons.star),
+            const SizedBox(width: 5),
+            Text(
+              "${widget.place['rating'].toString()} . ",
+              style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          Text(
-            "${widget.place['review'].toString()}reviews",
-            style: const TextStyle(
-              fontSize: 17,
-              decoration: TextDecoration.underline,
-              fontWeight: FontWeight.w500,
-            ),
-          )
-        ],
-      ),
-    );
-  }
+            Text(
+              "${widget.place['review'].toString()}reviews",
+              style: const TextStyle(
+                fontSize: 17,
+                decoration: TextDecoration.underline,
+                fontWeight: FontWeight.w500,
+              ),
+            )
+          ],
+        ),
+      );
 
   Container ratingAndStarTrue() {
     return Container(
@@ -307,7 +308,10 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
               Text(
                 widget.place['rating'].toString(),
                 style: const TextStyle(
-                    fontSize: 17, fontWeight: FontWeight.bold, height: 1),
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  height: 1,
+                ),
               ),
               StarRating(rating: widget.place['rating']),
             ],
@@ -415,12 +419,15 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
                     icon: Icons.arrow_back_ios_new,
                   ),
                 ),
-                SizedBox(width: size.width * 0.55),
+                SizedBox(
+                  width: size.width * 0.55,
+                ),
                 const MyIconButton(icon: Icons.share_outlined),
                 const SizedBox(width: 20),
+                // after this all let's make favorite button function by using provider
                 InkWell(
                   onTap: () {
-                    provider.tooglefavorite(widget.place);
+                    provider.toggleFavorite(widget.place);
                   },
                   child: MyIconButton(
                     icon: provider.isExist(widget.place)
@@ -434,7 +441,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
